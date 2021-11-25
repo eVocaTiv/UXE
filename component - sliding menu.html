@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div id="slider-menu" class="menu collapsed">
+      <span id="slide-btn-title">Sweeties (click me)!</span>
+      <div id="slide-contents">
+        <ul>
+          <li>Cake</li>
+          <li>Donut</li>
+          <li>Honey</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+
+  <style>
+
+    .menu #slide-btn-title::before {
+        content: '▼'
+    }
+
+    .menu.collapsed #slide-btn-title::before {
+        content: '▶'
+    }
+
+    .menu #slide-btn-title:hover {
+      cursor: pointer;
+    }
+    .menu.collapsed #slide-contents {
+      display: none;
+    }
+
+    .menu #slide-contents {
+      display: block;
+    }
+
+  </style>
+
+  <script>
+    let sliderMenu = document.getElementById("slider-menu");
+    let menu = sliderMenu.querySelector('.menu');
+
+ 
+
+    // M1 using CSS with ::before content
+    sliderMenu.addEventListener('click', () => {
+        sliderMenu.classList.toggle('collapsed'); 
+    });
+
+
+    // M2 - using JS primarily
+    // let button = document.getElementById("slide-btn-title");
+    // let contents = document.getElementById("slide-contents");
+    // const openText = " ▼ Sweeties (click me)!";
+    // const collapsedText = " ▶ Sweeties (click me)!";
+    // button.addEventListener("click", () => {
+    //   const openText = " ▼ Sweeties (click me)!";
+    //   const collapsedText = " ▶ Sweeties (click me)!";
+
+    //   if (button.classList.contains("collapsed")) {
+    //     // expand
+    //     button.classList.remove("collapsed");
+    //     button.textContent = openText;
+    //     contents.style.display = "block";
+    //   } else {
+    //     // collapse
+    //     button.classList.add("collapsed");
+    //     button.textContent = collapsedText;
+    //     contents.style.display = "none";
+    //   }
+    // });
+  </script>
+</html>

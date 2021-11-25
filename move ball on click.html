@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      #field {
+        width: 200px;
+        height: 150px;
+        border: 10px solid black;
+        background-color: #00ff00;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      #ball {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        transition: all 1s;
+      }
+    </style>
+  </head>
+
+  <body style="height: 2000px">
+    Click on a field to move the ball there.
+    <br />
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball" /> . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <script>
+      field.onclick = function (event) {
+        let field = document.getElementById("field");
+        let ball = document.getElementById("ball");
+
+        const { clientX, clientY } = event;
+        const { top: fieldTop, left: fieldLeft, right: fieldRight, bottom: fieldBottom } =
+          field.getBoundingClientRect();
+
+        // Set relative top, left values of ball wrt field
+        let ballTop = (ball.style.top =
+          clientY - fieldTop - field.clientTop - ball.offsetHeight / 2);
+        let ballLeft = (ball.style.left =
+          clientX - fieldLeft - field.clientLeft - ball.offsetWidth / 2);
+
+        // boundary checks
+        if(ballLeft < 0) {
+          ballLeft = 0;
+        }
+
+        if(ballTop < 0) {
+          ballTop = 0;
+        }
+
+        if(ballLeft + ball.offsetWidth > field.clientWidth) {
+          ballLeft = field.clientWidth-ball.clientWidth;
+        }
+
+        if(ballTop +  ball.offsetHeight > field.clientHeight) {
+          ballTop = field.clientHeight-ball.clientHeight;
+        }
+
+        ball.style.top = ballTop + 'px';
+        ball.style.left = ballLeft + 'px';
+
+      };
+    </script>
+  </body>
+</html>
