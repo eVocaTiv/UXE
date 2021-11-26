@@ -63,11 +63,11 @@
         }
 
         if(ballLeft + ball.offsetWidth > field.clientWidth) {
-          ballLeft = field.clientWidth-ball.clientWidth;
+          ballLeft = field.clientWidth-ball.offsetWidth;
         }
 
         if(ballTop +  ball.offsetHeight > field.clientHeight) {
-          ballTop = field.clientHeight-ball.clientHeight;
+          ballTop = field.clientHeight-ball.offsetWidth;
         }
 
         ball.style.top = ballTop + 'px';
