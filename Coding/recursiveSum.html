@@ -1,0 +1,31 @@
+<!doctype html>
+<script src="https://en.js.cx/test/libs.js"></script>
+<script src="test.js"></script>
+<script>
+
+  function sum(a) {
+    // Your code goes here.
+    let curSum = a;
+    function add(b) {
+      curSum += b;
+      return add;
+    }
+
+    add.toString = function() {
+      return curSum;
+    }
+  
+    return add;
+  }
+  
+  /*
+  sum(1)(2) == 3; // 1 + 2
+  sum(1)(2)(3) == 6; // 1 + 2 + 3
+  sum(5)(-1)(2) == 6
+  sum(6)(-1)(-2)(-3) == 0
+  sum(0)(1)(2)(3)(4)(5) == 15
+  */
+
+</script>
+
+</html>
