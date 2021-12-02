@@ -1,0 +1,63 @@
+<script>
+
+    // using setInterval
+    // let timerId = setInterval(() => alert('tick', 2000));
+
+
+    // using setTimeout nested
+    // let timerIdNew = setTimeout(function tick() {
+    //     alert('tick2');
+    //     timerIdNew = setTimeout(tick, 2000);
+
+    // }, 2000);
+
+
+    // eg of api throttling based on server feedback
+    // let timerId = setTimeout(function request() {
+    //   ...send request...
+
+    //   if (request failed due to server overload) {
+    //     // increase the interval to the next run
+    //     delay *= 2;
+    //   }
+
+    //   timerId = setTimeout(request, delay);
+
+    // }, delay);
+
+
+    // out 1 number every sec.
+
+    function printNumbers(from, to) {
+        let cur = from;
+
+        // setTimeout variant
+        // let timerId = setTimeout(function printNum() {
+        //     console.log(cur++);
+        //     if(cur <= to) setTimeout(printNum, 100);
+        // }, 1000);
+
+        // setInterval variant
+        // let timerId = setInterval(function printNum() {
+        //     console.log(cur++);
+        //     if (cur > to) clearInterval(timerId);
+        // }, 100)
+
+        // while(cur <= to) {
+        //     setTimeout(`console.log(${cur++})`, 1000);
+        // }
+        // setInterval(`console.log(${cur++})` , 1000);
+        let i = 0;
+        setTimeout(() => console.log('timeout1 big', i), 500);
+        setTimeout(() => console.log('timeout2 small', i), 100);
+        
+        for(i=0; i<100000; i++) {
+
+        }
+        console.log('done with fluff')
+
+    }
+
+    printNumbers(0, 10);
+
+</script>
