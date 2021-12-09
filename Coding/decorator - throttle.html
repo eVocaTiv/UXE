@@ -22,10 +22,11 @@ function throttle(f, ms) {
         isThrottled = true;
         f.apply(this, arguments);
 
-        setTimeout(() => {
+        let timeout = setTimeout(() => {
             isThrottled = false;
             if(nextArgs && nextThis) {
-                func.apply(nextThis, nextArgs);
+                // run wrapper because we need to reset timer.
+                wrapper.apply(nextThis, nextArgs);
                 nextThis = null;
                 nextArgs = null;
             }
