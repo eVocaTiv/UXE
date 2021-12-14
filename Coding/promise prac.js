@@ -45,3 +45,17 @@ promise
   .catch((err) => console.error(err));
 
 promise.then(script => console.log('other handler starting...'))
+
+
+// Polyfill for promise.allSettled
+if(!Promise.allSettled) {
+  const rejectHandler = reason => ({status: 'rejected', reason})
+  const acceptHandler = value => ({status: 'fulfilled', value})
+
+  Promise.allSettled = function(promises) {
+    const convertedPromises = promises.map(p => Promise.resolve(p).then(acceptHandler, rejectHandler));
+    return Promise.all(convertedPromises);
+  }
+}
+
+
