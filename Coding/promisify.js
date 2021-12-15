@@ -24,22 +24,7 @@ function loadScriptPromise(src) {
     })
 }
 
-// Promisifier generic gunction
-// returns a wrapper function. (not a promise, remember promise's executor is called on creation)
-function promisify(f) {
-    return function wrapper(...args) {
-        return new Promise((resolve, reject) => {
-            function callback(err, result) { //callback specific to f
-                if(err) reject(err)
-                resolve(result)
-            }  
-            
-            args.push(callback);
-            f.call(this, ...args);
-        })
-    }
-}
 
-// usage:
-// let loadScriptPromise = promisify(loadScript);
-// loadScriptPromise(...).then(...);
+
+
+

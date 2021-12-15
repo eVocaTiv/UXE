@@ -53,9 +53,9 @@ if(!Promise.allSettled) {
   const acceptHandler = value => ({status: 'fulfilled', value})
 
   Promise.allSettled = function(promises) {
+    // make every promise be 'resolved' so promise.all doesn't break.
+    // separately add actual status before returning.
     const convertedPromises = promises.map(p => Promise.resolve(p).then(acceptHandler, rejectHandler));
     return Promise.all(convertedPromises);
   }
 }
-
-
