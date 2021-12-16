@@ -13,11 +13,11 @@
   </div>
 
   <script>
-    // ...your code...
       const thumb = slider.querySelector('.thumb');
 
       thumb.onmousedown = function(event) {
         event.preventDefault();
+        // slider is relatively positioned wrt. slide area.
         const {clientX, clientY} = event;
         const shiftX = clientX - thumb.getBoundingClientRect().x;
 

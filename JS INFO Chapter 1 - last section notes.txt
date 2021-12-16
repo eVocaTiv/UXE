@@ -1,0 +1,31 @@
+EVAL
+
+- Usage usually discouraged because it can access outer scope variables
+- Returns result of last statement. eg. let value = eval('let i = 0; ++i'); alert(value); // 1
+- If no outer scope variables are used, use eval as window.eval() so it's executed in global scope
+- If local variables are used, then replace it will new Function(..) which allows strings. 
+eg. let f = new Function('a', alert('a'));
+f(5) // 5
+
+CURRYING
+
+- Used in other languages as well
+- Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+- Usecase - log(time, type, message); => log = curry(log) => logNow = log(new Date()); => logNow("DEBUG", 'message...');
+
+- Generic advanced currying snippet - V IMP.
+- Different from using a decorator - bc in currying the max number of arguments if KNOWN, in wrapper the function is KNOWN.
+
+REFERENCE TYPE
+ - obj.go() === (obj.go)();
+ - but (method = obj.go)();    // (3) undefined
+(obj.go || obj.stop)(); // (4) undefined because (3) & (4) take place as 2 statements => 'this' is undefined.
+
+
+BIGINT
+ - BigInt("1234") === BigInt(1234) === 1234n
+ - All operations on bigints return biginits, which can't be mixed with regular numbers. => alert(1n + 2) gives error. So use conversions BigInt(..) or Number(..)
+ - CAREFUL using conversions because extra bits can cut off in bigint.
+ - Unary plus (+) is not supported for biginits => use Number(...)
+ - When inside if or other boolean operations, bigints behave like numbers.
+ 
