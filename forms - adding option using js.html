@@ -1,0 +1,17 @@
+<html>
+  <select id="genres">
+    <option value="rock">Rock</option>
+    <option value="blues" selected>Blues</option>
+  </select>
+</html>
+
+<script>
+  //     Show the value and the text of the selected option.
+  // Add an option: <option value="classic">Classic</option>.
+  // Make it selected.
+
+  console.log(genres.value); // outputs selected value.
+  const newOption = new Option('Classic', 'classic');
+  genres.append(newOption);
+  newOption.selected = true;
+</script>

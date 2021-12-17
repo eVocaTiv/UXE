@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #mouse {
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Click on the mouse and move it with arrow keys.</p>
+
+  <pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+  <script>
+    const mouse = document.getElementById('mouse');
+    mouse.tabIndex = "1";
+    mouse.onclick = function() {
+      this.focus();
+      this.style.position = 'fixed';
+      attachedMovers(this);
+    }
+
+    function attachedMovers(el) {
+      el.onkeydown = function(event) {
+        event.preventDefault();
+        if(event.code === "ArrowRight") {
+          // move right
+          
+          console.log(!!(el.style.left))
+          let left = (el.style.left ? parseInt(el.style.left) : 0) +  el.clientWidth;
+          console.log(left);
+          if(left + el.offsetWidth > document.documentElement.clientWidth) {
+            left = document.documentElement.clientWidth - el.offsetWidth;
+          }
+          el.style.left = left + 'px';
+        }
+        if(event.code === "ArrowLeft") {
+          // move left
+        }
+        if(event.code === "ArrowUp") {
+          // move up
+        }
+        if(event.code === "ArrowDown") {
+          // move down
+        }
+      }
+      el.onblur = function() { el.onkeydown = null }
+    }
+
+  </script>
+
+</body>
+
+</html>
