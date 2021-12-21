@@ -1,0 +1,14 @@
+<template id="tmpl">
+    <script>
+        alert('alerting from template');
+    </script>
+    <div class="message">Yo</div>
+</template>
+
+<script>
+    let el = document.createElement('div');
+    el.append(tmpl.content.cloneNode(true));
+    document.body.append(el);
+</script>
+
+
