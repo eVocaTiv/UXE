@@ -24,7 +24,16 @@ function loadScriptPromise(src) {
     })
 }
 
+function promisifyAsyncF(f) {
+    function wrapper(data) {
+        return new Promise(function(rs, rj) {
+            f(num, (err, data) => {
+                if(err) rj(err)
+                rs(data)
+            })
+        })
+    }
 
-
-
+    return wrapper;
+}
 
