@@ -1,0 +1,39 @@
+<!-- // Given a string and a style array render HTML pretty much like a rich text editor.
+// For example: 'Hello, world', [[0, 2, 'i'], [4, 9, 'b'], [7, 10, 'u']]
+// Output: '<i>Hel</i>l<b>o, w<u>orl</u></b><u>d</u>
+// something like that.
+ -->
+
+<script>
+  function render(str, tagArray) {
+    let tags = [];
+    tagArray.forEach(([start, end, tagName]) => {
+      // create tagStrings like (index, tagString) and push them to tags[]
+
+      const tagStringStart = "<" + tagName + ">";
+      const tagStringEnd = "</" + tagName + ">";
+      tags.push([start, tagStringStart], [end, tagStringEnd]);
+    });
+
+    tags.sort((a, b) => a[0] - b[0]);
+
+    let copyStr = str;
+    let strLenDiff = 0;
+    for(let i=0; i<copyStr.length; i++) {
+        if(!tags.length) break;
+        const [tagIndex, tagString] = tags[0];
+        if(i === tagIndex+strLenDiff) {
+            let copyStrArr = copyStr.split('');
+            copyStrArr.splice(i, 0, tagString);
+            copyStr = copyStrArr.join('');
+            strLenDiff += tagString.length;
+            tags.shift();
+        }
+    }
+    console.log(copyStr)
+    return copyStr;
+  }
+
+  render('Hello, world', [[0, 2, 'i'], [4, 9, 'b'], [7, 10, 'u']]);
+
+</script>
