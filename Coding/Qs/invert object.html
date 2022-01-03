@@ -1,0 +1,28 @@
+<script>
+     let obj = {
+         key1: 'value1',
+         key2: 'value2',
+         key3: {
+             key4: 'value4',
+             key5: 'value5',
+         }
+     }
+
+     // assuming all values as strings or objects.
+     // in case of objects don't need to touch the key.
+
+     function invertObj(obj) {
+         
+        for (let [key, value] of Object.entries(obj)) {
+            if(typeof value === 'object') {
+                // invert subObject.
+                obj[key] = invertObj(obj[key]);
+            } else
+            if(key !== value) {
+                obj[value] = key;
+                delete obj[key];
+            }
+        }
+        return obj;
+     }
+</script>
