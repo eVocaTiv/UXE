@@ -1,0 +1,24 @@
+<script>
+  // Input:  arr[]   = [10, 11, 12];
+  // index[] = [1, 0, 2];
+  // Output: arr[]   = [11, 10, 12]
+
+  // Input:  arr[]   = [50, 40, 70, 60, 90]
+  //         index[] = [3,  0,  4,  1,  2]
+  // Output: arr[]   = [40, 60, 90, 50, 70]
+  //         index[] = [0,  1,  2,  3,   4]
+
+  function reorder(arr, ix) {
+    const n = arr.length;
+    for(let i=0; i<n; i++) {
+        while(ix[i] !== i) {
+            const newIndex = ix[i];
+            const oldIndex = i;
+            [arr[oldIndex], arr[newIndex]] = [arr[newIndex], arr[oldIndex]];
+            [ix[oldIndex], ix[newIndex]] = [ix[newIndex], ix[oldIndex]];
+        }
+    }
+    return arr;
+  }
+  console.log(reorder([50, 40, 70, 60, 90], [3,0,4,1,2]))
+</script>
