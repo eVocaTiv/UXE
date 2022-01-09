@@ -1,6 +1,5 @@
 function smallestUniqueSubstr(str) {
 
-
     if(str.length < 2) return str;
 
     const strCode = str => str.charCodeAt()-'a'.charCodeAt();

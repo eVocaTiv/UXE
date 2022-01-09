@@ -35,7 +35,7 @@ checkThisNotBound(); // undefined in STRICT mode, and global object in non-stric
 let arrowUser = {
     name: "Arrow",
     age: 50,
-
+    f = () => {console.log('hi')},
     sayHi() {
         let arrowFn = () => {console.log(this.name);} // Arrow
     }

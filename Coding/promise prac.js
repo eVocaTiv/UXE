@@ -23,8 +23,8 @@ function loadScript(src, callback) {
 
   document.head.append(script);
 }
-// loadScript using promises
 
+// loadScript using promises
 function loadScript(src) {
   return new Promise(function (resolve, reject) {
     let script = document.createElement("script");
