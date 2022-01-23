@@ -20,7 +20,7 @@ function throttle(f, ms) {
         
         // else execute, set throttled to true with a timeout of 1sec
         isThrottled = true;
-        f.apply(this, arguments);
+        f.apply(this, args);
 
         let timeout = setTimeout(() => {
             isThrottled = false;

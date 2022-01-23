@@ -58,6 +58,24 @@
 
     }
 
+
     printNumbers(0, 10);
 
+
+function mySetTimeout(f, wait) {
+    
+    let interval = setTimeout(() => {
+        f();
+        setTimeout(mySetTimeout, wait);
+    }, wait)
+}
+
+function clearMyTimeout(id) { // need to use object since normal integers might clash with window's clearTimeout
+    clearTimeout(id);
+}
+
+
 </script>
+
+
+
