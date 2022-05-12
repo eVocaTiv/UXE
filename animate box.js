@@ -13,3 +13,33 @@ function animate(element, duration, distance) {
   }
   animate(el, 2000, 200);
 // animate(element, MS, PIXELS)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,6 +5,7 @@
  -->
 
 <script>
+
   function render(str, tagArray) {
     let tags = [];
     tagArray.forEach(([start, end, tagName]) => {
@@ -12,28 +13,73 @@
 
       const tagStringStart = "<" + tagName + ">";
       const tagStringEnd = "</" + tagName + ">";
-      tags.push([start, tagStringStart], [end, tagStringEnd]);
+      tags.push([start, tagStringStart], [end+1, tagStringEnd]);
     });
 
     tags.sort((a, b) => a[0] - b[0]);
 
-    let copyStr = str;
+    let copyStrArr = str.split("");
     let strLenDiff = 0;
-    for(let i=0; i<copyStr.length; i++) {
-        if(!tags.length) break;
-        const [tagIndex, tagString] = tags[0];
-        if(i === tagIndex+strLenDiff) {
-            let copyStrArr = copyStr.split('');
-            copyStrArr.splice(i, 0, tagString);
-            copyStr = copyStrArr.join('');
-            strLenDiff += tagString.length;
-            tags.shift();
-        }
+
+
+    // let T tags, and N original string length
+    // M1 -- O(MLOGM + M*N)
+
+    // for(let i=0; i<copyStrArr.length; i++) {
+    //   if(!tags.length) break;
+    //   const [tagIndex, tag] = tags[0];
+    //   if(i === strLenDiff + tagIndex) {
+    //     copyStrArr.splice(i, 0, tag)
+    //     tags.shift();
+    //     strLenDiff += tag.length;
+    //     i+= tag.length;
+    //   }
+    // }
+
+    // M2 - Optimized - TLOGT + T+N, so if N >>> T => ~ O(N)
+    let resStr = [];
+    let j = 0;
+    for (let i = 0; i < copyStrArr.length;) {
+      // if(!tags.length) break;
+      if (j < tags.length && i === tags[j][0]) {
+        const [tagIndex, tagString] = tags[j++];
+        console.log(tagIndex,tagString);
+        // copyStrArr.splice(i, 0, tagString);
+        resStr.push(...tagString);
+        // strLenDiff += tagString.length;
+        // i+=tagString.length;
+        // i++;
+        tags.shift();
+      } else {
+        resStr.push(copyStrArr[i]);
+        i++
+      }
+      console.log(resStr);
     }
-    console.log(copyStr)
-    return copyStr;
+
+    // for(let i=0; i<copyStrArr.length; i++) {
+    //     if(!tags.length) break;
+    //     const [tagIndex, tagString] = tags[0];
+    //     if(i === tagIndex + strLenDiff) {
+    //         copyStrArr.splice(i, 0, tagString);
+    //         strLenDiff += 1;
+    //         // i+=tagString.length;
+
+    //         i++;
+    //         tags.shift();
+    //     }
+    // }
+    // console.log(copyStrArr)
+    if(tags.length) {
+      const [tagIndex, tagString] = tags.shift();
+      resStr.push(...tagString);
+    }
+    return resStr.join("");
   }
 
-  render('Hello, world', [[0, 2, 'i'], [4, 9, 'b'], [7, 10, 'u']]);
-
+  render("Hello, world", [
+    [0, 2, "i"],
+    [4, 9, "b"],
+    [7, 10, "u"],
+  ]);
 </script>

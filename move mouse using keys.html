@@ -48,6 +48,7 @@
         if(event.code === "ArrowRight") {
           // move right
           
+          // mouse.style.left = getComputedStyle(mouse).left; Alternatively, can also use this to avoid !! checks
           console.log(!!(el.style.left))
           let left = (el.style.left ? parseInt(el.style.left) : 0) +  el.clientWidth;
           console.log(left);

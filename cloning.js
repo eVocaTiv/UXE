@@ -16,7 +16,7 @@ user2.interests.passion = "Games";
 console.log(user.interests.passion);
 
 
-// deep copy
+// deep copy, but will fail at circular references.
 let createDeepCopy = (newObj, obj) => {
     for (key in obj) {
         if (typeof obj[key] == Object) {

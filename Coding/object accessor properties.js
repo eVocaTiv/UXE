@@ -10,4 +10,3 @@ let user = {
 };
 
 console.log(user.fullName); // Kun Dewan
-
